@@ -1,18 +1,54 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+env/
+venv/
+ENV/
+.venv/
+.env
+.env.*
 
-# Other files and folders
-.settings/
+# Node.js / React / Vite
+node_modules/
+dist/
+build/
+.vite/
+.next/
+.cache/
+*.log
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# VSCode / IDE
+.vscode/
+.idea/
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# OS files
+.DS_Store
+Thumbs.db
+
+# AI/ML model files
+*.pt
+*.pth
+*.ckpt
+models/
+checkpoints/
+
+# Logs & reports
+*.log
+logs/
+coverage/
+*.cover
+.pytest_cache/
+.tox/
+.nox/
+
+# Misc
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+
+# Others - Docs
+Others - Files/
