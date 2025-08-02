@@ -1,0 +1,5 @@
+{
+  "wake_word": "echo",
+  "internet_access": false,
+  "language": "en"
+}
