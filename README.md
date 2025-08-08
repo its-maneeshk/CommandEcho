@@ -1,64 +1,183 @@
-<div align="center">
-  <a href="https://github.com/its-maneeshk/CommandEcho" target="_blank">
-    <img width="180" src="assets/logo/commandecho_logo.svg" alt="CommandEcho Logo">
-  </a>
-</div>
+# CommandEcho - Offline AI Voice Assistant
 
-<h1 align="center">CommandEcho</h1>
+CommandEcho is an intelligent offline AI voice assistant similar to Iron Man's Jarvis. It runs entirely locally without requiring internet connectivity or cloud API calls.
 
-<p align="center">
-    <a href="https://github.com/its-maneeshk/CommandEcho/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/its-maneeshk/CommandEcho?color=greenlight&label=latest%20release"></a>
-    <a href="https://github.com/its-maneeshk/CommandEcho"><img alt="GitHub Repo" src="https://img.shields.io/badge/project-github-purple?&labelColor=gray"></a>
-</p>
+## 🌟 Features
 
-<a href="https://github.com/its-maneeshk/CommandEcho" target="_blank">
-    <img alt="CommandEcho Banner" src="assets/banners/commandecho_banner.png"/>
-</a>
+- **Offline AI Brain**: Uses local LLaMA models for intelligent responses
+- **Voice Interface**: Speech recognition and text-to-speech capabilities
+- **Memory System**: Remembers conversations and user preferences
+- **System Control**: Control volume, brightness, launch apps, get system info
+- **File Management**: Search and manage files through voice commands
+- **Conversational**: Chat naturally like with ChatGPT, not just fixed commands
 
-## Description
+## 🚀 Quick Start
 
-**CommandEcho** is a privacy-first, offline AI assistant with local memory, file system interaction, and voice command capabilities. Built to work entirely offline, it provides production-grade automation with no compromise on security.
-
-## Features
-
-- 🎙 Voice-controlled offline assistant
-- 🧠 Local memory & reasoning (LLaMA or similar model integration)
-- 📁 Create, delete, search, and manage files by voice
-- 🧩 Modular design for extensibility (task runners, memory modules)
-- 🔐 Privacy-focused: No internet dependency or cloud API usage
-- 💡 Human-like command interaction
-- 🖥 Cross-platform (Linux, Windows, macOS)
-
-## Installation
-
-> You can build and run CommandEcho locally:
-
-```bash
-git clone https://github.com/its-maneeshk/CommandEcho.git
+### 1. Setup
+\`\`\`bash
+# Clone or download the project
 cd CommandEcho
-# Follow setup instructions in backend and frontend folders
-```
 
-## Screenshots
+# Run setup script
+python setup.py
+\`\`\`
 
-<div align="center">
-<img src="assets/screenshots/app-home_dark.png" alt="Screenshot" height="300">
-<img src="assets/screenshots/app-home_light.png" alt="Screenshot" height="300">
-<img src="assets/screenshots/voice-command_dark.png" alt="Screenshot" height="300">
-<img src="assets/screenshots/voice-command_light.png" alt="Screenshot" height="300">
-</div>
+### 2. Download AI Model
+Download a LLaMA model in GGUF format:
+- **Recommended**: [Llama-3.2-3B-Instruct](https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF)
+- Place the `.gguf` file in `models/llama-3-8b-instruct.Q4_K_M.gguf`
 
-## Project Status & Feedback
+### 3. Run CommandEcho
+\`\`\`bash
+# Text mode (for testing)
+python main.py --text-mode
 
-CommandEcho is under active development and currently in prototype stage. Feedback, bug reports, and feature suggestions are highly encouraged.
+# Voice mode
+python main.py
+\`\`\`
 
-## Contribution
+## 📁 Project Structure
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+\`\`\`
+CommandEcho/
+├── main.py                 # Entry point
+├── core/                   # Core functionality
+│   ├── assistant.py        # Main assistant orchestrator
+│   ├── config.py          # Configuration management
+│   ├── voice_input.py     # Speech recognition
+│   ├── voice_output.py    # Text-to-speech
+│   └── command_handler.py # Command processing
+├── brain/                  # AI and memory
+│   ├── llm_brain.py       # LLaMA integration
+│   └── memory_system.py   # Long-term memory
+├── tools/                  # System control tools
+│   ├── system_control.py  # Volume, brightness, etc.
+│   ├── file_manager.py    # File operations
+│   └── app_launcher.py    # App launching
+├── models/                 # Place LLaMA models here
+├── data/memory/           # Memory storage
+└── config/                # Configuration files
+\`\`\`
 
-## License
+## 🎯 Usage Examples
 
-This project is licensed under the **Apache License 2.0** - see the [LICENSE](LICENSE) file for details.
+### Voice Commands
+- "Hello Echo, what's the weather like?" (conversational)
+- "Set volume to 50"
+- "Open Visual Studio Code"
+- "What's my battery level?"
+- "Find files containing 'project'"
+- "Remember that I prefer dark mode"
+- "My name is John"
+
+### Text Mode
+\`\`\`
+You: Hello, how are you?
+CommandEcho: Hello! I'm functioning well and ready to assist you. How can I help you today?
+
+You: Open notepad
+CommandEcho: Launched Notepad
+
+You: What time is it?
+CommandEcho: The current time is 2:30 PM on Monday, January 15, 2024
+\`\`\`
+
+## ⚙️ Configuration
+
+Edit `config/config.json` to customize:
+
+\`\`\`json
+{
+  "voice": {
+    "wake_word": "echo",
+    "always_listening": false,
+    "speech_rate": 200,
+    "speech_volume": 0.9
+  },
+  "llm": {
+    "model_path": "models/llama-3-8b-instruct.Q4_K_M.gguf",
+    "context_length": 4096,
+    "max_tokens": 512,
+    "temperature": 0.7
+  }
+}
+\`\`\`
+
+## 🧠 Memory System
+
+CommandEcho remembers:
+- Your name and preferences
+- Past conversations
+- Important information you tell it
+- System usage patterns
+
+Memory is stored locally in:
+- SQLite database for structured data
+- FAISS vector database for semantic search
+
+## 🛠️ System Requirements
+
+- **Python**: 3.8 or higher
+- **RAM**: 8GB minimum (16GB recommended for larger models)
+- **Storage**: 5-10GB for models
+- **OS**: Windows 10/11, Linux, macOS
+
+## 📦 Dependencies
+
+Core dependencies:
+- `llama-cpp-python` - Local LLM inference
+- `speech_recognition` - Voice input
+- `pyttsx3` - Text-to-speech
+- `psutil` - System information
+- `sentence-transformers` - Memory embeddings
+- `faiss-cpu` - Vector search
+
+## 🔧 Troubleshooting
+
+### Model Issues
+- Ensure model file is in correct location
+- Check model file isn't corrupted
+- Try a smaller model if running out of memory
+
+### Audio Issues
+- **Windows**: Install Visual C++ Redistributable
+- **Linux**: `sudo apt-get install portaudio19-dev python3-pyaudio`
+- **macOS**: `brew install portaudio`
+
+### Performance
+- Use Q4_K_M quantized models for best speed/quality balance
+- Reduce `context_length` in config for faster responses
+- Close other applications to free up RAM
+
+## 🚧 Extending CommandEcho
+
+### Adding New Commands
+1. Add patterns to `core/command_handler.py`
+2. Implement handler methods
+3. Add tool functions in `tools/` directory
+
+### Adding New Tools
+1. Create new tool class in `tools/`
+2. Import in `command_handler.py`
+3. Add command patterns and handlers
+
+### Custom Models
+- Replace model path in config
+- Ensure model is in GGUF format
+- Adjust context length as needed
+
+## 📄 License
+
+This project is open source. Feel free to modify and extend it for your needs.
+
+## 🤝 Contributing
+
+Contributions welcome! Areas for improvement:
+- Additional system integrations
+- Better natural language understanding
+- More efficient memory management
+- Cross-platform compatibility improvements
 
 ---
-© 2025 Manish Kumar Patel — Built with ❤️ for privacy, performance, and practical AI.
+
+**Note**: This is an offline-first assistant. No data is sent to external servers, ensuring complete privacy and security.

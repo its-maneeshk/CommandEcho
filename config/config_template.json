@@ -1,0 +1,22 @@
+{
+  "voice": {
+    "wake_word": "echo",
+    "always_listening": false,
+    "speech_rate": 200,
+    "speech_volume": 0.9,
+    "voice_id": 0
+  },
+  "llm": {
+    "model_path": "models/llama-3-8b-instruct.Q4_K_M.gguf",
+    "context_length": 4096,
+    "max_tokens": 512,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "memory": {
+    "memory_db_path": "data/memory/memory.db",
+    "vector_db_path": "data/memory/vectors",
+    "max_short_term_memory": 10,
+    "embedding_model": "all-MiniLM-L6-v2"
+  }
+}
